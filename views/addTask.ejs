@@ -1,0 +1,37 @@
+<%include layout/_header%>
+    <div class="row">
+        <form action="/addTask" method="POST">
+            <div class="container mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Agregar tarea
+                        </h5>
+                        <div class="card-text">
+                            <div class="mb-3">
+                                <label for="taskName" class="form-label">Tarea</label>
+                                <input type="text" name="taskName" class="form-control" id="taskName">
+                            </div>
+                            <div class="mb-3">
+                                <label for="taskDate" class="form-label">Fecha</label>
+                                <input type="date" name="taskDate" class="form-control" id="taskDate">
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-select" name="taskUrgency" id="taskUrgency" aria-label="Default select example">
+                                    <option value="1">Poca urgencia</option>
+                                    <option value="2">Urgencia media</option>
+                                    <option value="3">Alta urgencia</option>
+                                </select>
+                            </div>
+                            <div class=" d-flex mt-2">
+                                <button type="submit" class="btn btn-danger mx-auto">Agregar</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+<%include layout/_footer%>

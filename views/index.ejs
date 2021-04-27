@@ -1,0 +1,64 @@
+<%include layout/_header%>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Tarea</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Urgencia</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% tasks.forEach(task => {%>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td><%=task.taskName%></td>
+                            <td><%=task.taskDate%></td>
+                            <td><%=task.taskUrgency%></td>
+                            <td>
+
+                                <div class="form-check" id="<%=task._id%>">
+                                    <input 
+                                    class="form-check-input" 
+                                    type="checkbox" 
+                                    id="completedTask"
+                                    <%if(task.taskCompleted){%>
+                                    checked<%}%>
+                                    >
+
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-primary">Editar</button>
+                                    <form action="/deleteTask" method="post">
+                                        <input type="hidden" name="taskId" value="<%=task._id%>">
+                                        <button type="submit" class="btn btn-danger" id="btn-borrar" >Borrar</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        <%});%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        const btn = document.getElementById('completedTask');
+        const http = new XMLHttpRequest();
+        if (!!btn){
+            btn.onclick = (e)=>{
+                http.open('POST', '/changeCompleted')
+                http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                http.send('id='+e.target.parentNode.id);
+            }    
+        }
+        
+    </script>
+    <%include layout/_footer%>
